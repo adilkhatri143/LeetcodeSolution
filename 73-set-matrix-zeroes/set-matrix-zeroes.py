@@ -19,7 +19,8 @@ class Solution:
         
         for row in range(1, rows):
             for col in range(1, cols):
-                matrix[row][col] = 0 if matrix[row][0] == 0 or matrix[0][col] == 0 else matrix[row][col]
+                if matrix[row][0] == 0 or matrix[0][col] == 0:
+                    matrix[row][col] = 0
         
         if first_row_zero:
             for col in range(cols):
