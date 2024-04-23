@@ -8,10 +8,9 @@ class Solution:
             return x * self.solve(x, n - 1)
     
     def myPow(self, x: float, n: int) -> float:
-        if n > 0:
-            return self.solve(x, n)
-        elif n < 0:
+        if n == 0:
+            return 1
+        if n < 0:
             n = -n
             x = 1 / x
-            return self.solve(x, n)
-        return 1
+        return self.solve(x, n)
