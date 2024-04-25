@@ -13,10 +13,10 @@ class Solution:
                     
         for r in range(len(matrix) - 2, -1, -1):
             for c in range(len(matrix[0]) - 2, -1, -1):
-                if int(matrix[r][c]) == 0: continue
-                min_sq = min(int(matrix[r + 1][c]), int(matrix[r][c + 1]), int(matrix[r + 1][c + 1]))
-                if min_sq:
-                    matrix[r][c] = min_sq + 1
-                ans = max(ans, int(matrix[r][c]))
+                if int(matrix[r][c]) == 1:
+                    min_sq = min(int(matrix[r + 1][c]), int(matrix[r][c + 1]), int(matrix[r + 1][c + 1]))
+                    if min_sq:
+                        matrix[r][c] = min_sq + 1
+                    ans = max(ans, int(matrix[r][c]))
         return ans * ans
                 
