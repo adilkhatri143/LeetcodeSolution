@@ -9,7 +9,7 @@ class Solution:
         node_list = list()
         def dfs(root):
             nonlocal node_list
-            if root is None: return []
+            if root is None: return None
             dfs(root.left)
             node_list.append(root.val)
             dfs(root.right)
