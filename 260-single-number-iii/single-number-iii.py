@@ -8,11 +8,11 @@ class Solution:
         set_bit_number = 1
         while xor_val & set_bit_number == 0:
             set_bit_number <<= 1
-        group_a = 0
-        group_b = 0
+        first_single_number = 0
+        second_single_number = 0
         for num in nums:
             if num & set_bit_number != 0:
-                group_a ^= num
+                first_single_number ^= num
             else:
-                group_b ^= num
-        return [group_a, group_b]
+                second_single_number ^= num
+        return [first_single_number, second_single_number]
