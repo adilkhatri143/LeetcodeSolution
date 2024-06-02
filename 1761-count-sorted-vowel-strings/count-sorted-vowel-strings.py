@@ -1,11 +1,11 @@
 class Solution:
     def countVowelStrings(self, n: int) -> int:
-        prev = cur = [1, 1, 1, 1, 1]
-        for i in range(1, n):
-            cur[0] = prev[0] + prev[1] + prev[2] + prev[3] + prev[4]
-            cur[1] = prev[1] + prev[2] + prev[3] + prev[4]
-            cur[2] = prev[2] + prev[3] + prev[4]
-            cur[3] = prev[3] + prev[4]
-            cur[4] = prev[4]
-            prev = cur
-        return sum(cur)
+        a, e, i, o, u = 1, 1, 1, 1, 1
+        while n > 1:
+            a = a + e + i + o + u
+            e = e + i + o + u
+            i = i + o + u
+            o = o + u
+            u = u
+            n -= 1
+        return a + e + i + o + u
