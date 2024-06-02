@@ -1,11 +1,11 @@
 class Solution:
     def countVowelStrings(self, n: int) -> int:
-        dp = [[0 for i in range(5)] for i in range(n)]
-        dp[0] = [1, 1, 1, 1, 1]
+        prev = cur = [1, 1, 1, 1, 1]
         for i in range(1, n):
-            dp[i][0] = dp[i - 1][0] + dp[i - 1][1] + dp[i - 1][2] + dp[i - 1][3] + dp[i - 1][4]
-            dp[i][1] = dp[i - 1][1] + dp[i - 1][2] + dp[i - 1][3] + dp[i - 1][4]
-            dp[i][2] = dp[i - 1][2] + dp[i - 1][3] + dp[i - 1][4]
-            dp[i][3] = dp[i - 1][3] + dp[i - 1][4]
-            dp[i][4] = dp[i - 1][4]
-        return sum(dp[-1])
+            cur[0] = prev[0] + prev[1] + prev[2] + prev[3] + prev[4]
+            cur[1] = prev[1] + prev[2] + prev[3] + prev[4]
+            cur[2] = prev[2] + prev[3] + prev[4]
+            cur[3] = prev[3] + prev[4]
+            cur[4] = prev[4]
+            prev = cur
+        return sum(cur)
