@@ -12,8 +12,6 @@ class Solution:
             if security[i] <= security[i + 1]:
                 non_decreasing[i] = non_decreasing[i + 1] + 1
         answer = list()
-        print(non_increasing)
-        print(non_decreasing)
         for i in range(time, n - time):
             if non_increasing[i] > time and non_decreasing[i] > time:
                 answer.append(i)
