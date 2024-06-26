@@ -6,21 +6,23 @@
 #         self.right = right
 class Solution:
     def balanceBST(self, root: TreeNode) -> TreeNode:
-        node_list = list()
-        def dfs(root):
-            nonlocal node_list
-            if root is None: return None
-            dfs(root.left)
-            node_list.append(root.val)
-            dfs(root.right)
-        dfs(root)
+        sort_list = []
+        def inorder(root):
+            nonlocal sort_list
+            if root is None:
+                return
+            inorder(root.left)
+            sort_list.append(root.val)
+            inorder(root.right)
+        inorder(root)
 
-        def build(l, r):
-            nonlocal node_list
-            if l <= r:
-                mid = (l + r) // 2
-                new_node = TreeNode(node_list[mid])
-                new_node.left, new_node.right = build(l, mid - 1), build(mid + 1, r)
-                return new_node
-            return None
-        return build(0, len(node_list) - 1)
+        def create_balance_tree(left, right):
+            nonlocal sort_list
+            if left > right:
+                return None
+            mid = (left + right) // 2
+            new_node = TreeNode(sort_list[mid])
+            new_node.left = create_balance_tree(left, mid - 1)
+            new_node.right = create_balance_tree(mid + 1, right)
+            return new_node 
+        return create_balance_tree(0 , len(sort_list) - 1)
