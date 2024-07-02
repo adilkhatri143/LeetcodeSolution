@@ -1,5 +1,9 @@
 class Solution:
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        if len(nums1) > len(nums2):
+            temp = nums1
+            nums1 = nums2
+            nums2 = temp
         num1_map = dict()
         for num in nums1:
             num1_map[num] = num1_map.get(num, 0) + 1
