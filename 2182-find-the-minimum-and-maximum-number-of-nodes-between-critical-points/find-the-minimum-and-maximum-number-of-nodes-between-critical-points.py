@@ -16,19 +16,15 @@ class Solution:
             if prev_node.val < itr_node.val > itr_node.next.val:
                 if min_idx == -1:
                     min_idx = cur_idx
-                if max_idx == -1:
-                    max_idx = cur_idx
-                else:
+                if max_idx != -1:
                     min_dis = min(min_dis, cur_idx - max_idx)
-                    max_idx = cur_idx
+                max_idx = cur_idx
             elif prev_node.val > itr_node.val < itr_node.next.val:
                 if min_idx == -1:
                     min_idx = cur_idx
-                if max_idx == -1:
-                    max_idx = cur_idx
-                else:
+                if max_idx != -1:
                     min_dis = min(min_dis, cur_idx - max_idx)
-                    max_idx = cur_idx
+                max_idx = cur_idx
             cur_idx += 1
             prev_node = itr_node
             itr_node = itr_node.next
