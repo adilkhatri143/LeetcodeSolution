@@ -7,30 +7,25 @@ class Solution:
     def nodesBetweenCriticalPoints(self, head: Optional[ListNode]) -> List[int]:
         if head.next.next is None:
             return [-1, -1]
-        min_idx = max_idx = 2
+        min_idx = max_idx = -1
         cur_idx = 2
-        minf = maxf = True
         min_dis = float('inf')
         prev_node = head
         itr_node = head.next
         while itr_node.next:
             if prev_node.val < itr_node.val > itr_node.next.val:
-                if min_idx == 2 and minf:
+                if min_idx == -1:
                     min_idx = cur_idx
-                    minf = False
-                if max_idx == 2 and maxf:
+                if max_idx == -1:
                     max_idx = cur_idx
-                    maxf = False
                 else:
                     min_dis = min(min_dis, cur_idx - max_idx)
                     max_idx = cur_idx
             elif prev_node.val > itr_node.val < itr_node.next.val:
-                if min_idx == 2 and minf:
+                if min_idx == -1:
                     min_idx = cur_idx
-                    minf = False
-                if max_idx == 2 and maxf:
+                if max_idx == -1:
                     max_idx = cur_idx
-                    maxf = False
                 else:
                     min_dis = min(min_dis, cur_idx - max_idx)
                     max_idx = cur_idx
