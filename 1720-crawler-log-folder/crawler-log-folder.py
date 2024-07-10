@@ -6,7 +6,8 @@ class Solution:
                 if count:
                     count = max(0, count - 1)
                 continue
-            if log == "./":
+            elif log == "./":
                 continue
-            count += 1
+            else:
+                count += 1
         return count
