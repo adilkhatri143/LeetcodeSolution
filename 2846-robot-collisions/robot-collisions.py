@@ -5,13 +5,7 @@ class Solution:
         positions.sort(key=lambda x: x[0])
         stack = list()
         for p, h, d, op in positions:
-            if not stack:
-                stack.append([h, d, op])
-            elif stack and stack[-1][1] == "R" and d == "R":
-                stack.append([h, d, op])
-            elif stack and stack[-1][1] == "L" and d == "L":
-                stack.append([h, d, op])
-            elif stack and stack[-1][1] == "L" and d == "R":
+            if not stack or (stack and (stack[-1][1] == "R" and d == "R") or (stack[-1][1] == "L" and d == "L") or (stack[-1][1] == "L" and d == "R")):
                 stack.append([h, d, op])
             else:
                 to_add = False
