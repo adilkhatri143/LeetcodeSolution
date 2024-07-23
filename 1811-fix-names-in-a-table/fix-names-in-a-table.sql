@@ -1,4 +1,4 @@
 -- Write your PostgreSQL query statement below
-select user_id, INITCAP(SUBSTRING(name, 1, 1)) || LOWER(SUBSTRING(name, 2, LENGTH(name))) as name
+select user_id, UPPER(SUBSTRING(name, 1, 1)) || LOWER(SUBSTRING(name, 2, LENGTH(name))) as name
 from Users
 order by user_id;
