@@ -14,5 +14,4 @@ class Solution:
                     if num_to_count[num] <= 0:
                         num_to_count.pop(num)
                     answer += 1
-        print(num_to_count)
         return answer
