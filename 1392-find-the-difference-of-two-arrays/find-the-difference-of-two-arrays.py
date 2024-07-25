@@ -3,6 +3,6 @@ class Solution:
         answer = list()
         num1_set = set(nums1)
         num2_set = set(nums2)
-        answer.append(list(num1_set - num2_set))
-        answer.append(list(num2_set - num1_set))
+        answer.append(num1_set - num2_set)
+        answer.append(num2_set - num1_set)
         return answer
