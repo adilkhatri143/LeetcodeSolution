@@ -4,7 +4,6 @@ class Solution:
         for ch in word:
             alphabet_count[ord(ch) - 97] += 1
         alphabet_count.sort(reverse=True)
-        print(alphabet_count)
         answer = diff_alpha = 0
         multiple = 1
         for val in alphabet_count:
