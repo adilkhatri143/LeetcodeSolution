@@ -1,8 +1,10 @@
 class Solution:
     def numTilings(self, n: int) -> int:
-        full, top_empty, bottom_empty = {0: 1, 1: 1}, {1: 0}, {1: 0}
+        prev_full, full, top_empty, bottom_empty = 1, 1, 0, 0
         for i in range(2, n + 1):
-            full[i] = full[i - 1] + full[i - 2] + top_empty[i - 1] + bottom_empty[i - 1]
-            top_empty[i] = top_empty[i - 1] + full[i - 2]
-            bottom_empty[i] = bottom_empty[i - 1] + full[i - 2]
-        return full[n] % (10 ** 9 + 7)
+            new_full = full + prev_full + top_empty + bottom_empty
+            top_empty = top_empty + prev_full
+            bottom_empty = bottom_empty + prev_full
+            prev_full = full
+            full = new_full
+        return full % (10 ** 9 + 7)
