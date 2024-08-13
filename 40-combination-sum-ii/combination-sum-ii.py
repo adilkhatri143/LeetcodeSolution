@@ -13,11 +13,11 @@ class Solution:
 
         if candidates[idx] <= target:
             self.solve(candidates, idx + 1, target - candidates[idx], temp + [candidates[idx]])
-
-        for_idx = idx + 1
-        while for_idx < len(candidates) and candidates[for_idx] == candidates[for_idx - 1]:
-            for_idx += 1
-        self.solve(candidates, for_idx, target, temp)
+        
+        new_idx = idx + 1
+        while new_idx < len(candidates) and candidates[new_idx] == candidates[idx]:
+            new_idx += 1
+        self.solve(candidates, new_idx, target, temp)
         return
 
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
