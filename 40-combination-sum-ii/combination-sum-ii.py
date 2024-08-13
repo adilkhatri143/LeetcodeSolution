@@ -14,6 +14,7 @@ class Solution:
         if candidates[idx] <= target:
             self.solve(candidates, idx + 1, target - candidates[idx], temp + [candidates[idx]])
         
+        # important step
         new_idx = idx + 1
         while new_idx < len(candidates) and candidates[new_idx] == candidates[idx]:
             new_idx += 1
