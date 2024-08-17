@@ -11,8 +11,8 @@ class Solution:
                 right -= 1
             answer.append([])
             window_len = right - left + 1
-            for i in range(min(window_len, 3)):
-                answer[-1].append(products[left + i])
+            for j in range(min(window_len, 3)):
+                answer[-1].append(products[left + j])
         return answer
 
 
