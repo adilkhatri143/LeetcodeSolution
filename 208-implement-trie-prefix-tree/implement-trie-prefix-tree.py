@@ -1,49 +1,51 @@
 class Node:
     def __init__(self):
-        self.links = [None for i in range(26)]
-        self.flag = False
+        self.alphabet = [False] * 26
+        self.is_terminal = False
     
-    def contains_char(self, char):
-        return self.links[ord(char) - 97]
+    def char_exist(self, ch):
+        return self.alphabet[ord(ch) - 97]
+
+    def add_char(self, ch, new_node):
+        self.alphabet[ord(ch) - 97] = new_node
     
-    def set_char(self, char, new_node):
-        self.links[ord(char) - 97] = new_node
+    def get_char_node(self, ch):
+        return self.alphabet[ord(ch) - 97]
+
+    def set_terminal(self):
+        self.is_terminal = True
     
-    def get(self, char):
-        return self.links[ord(char) - 97]
-    
-    def set_end(self):
-        self.flag = True
-    
-    def is_end(self):
-        return self.flag
+    def is_terminal_node(self):
+        return self.is_terminal
+
 
 class Trie:
+
     def __init__(self):
-        self.root = Node()
+        self.node = Node()
 
     def insert(self, word: str) -> None:
-        itr_node = self.root
-        for i in range(len(word)):
-            if not itr_node.contains_char(word[i]):
-                itr_node.set_char(word[i], Node())
-            itr_node = itr_node.get(word[i])
-        itr_node.set_end()
+        node_iter = self.node
+        for ch in word:
+            if not node_iter.char_exist(ch):
+                node_iter.add_char(ch, Node())
+            node_iter = node_iter.get_char_node(ch)
+        node_iter.set_terminal()
 
     def search(self, word: str) -> bool:
-        itr_node = self.root
-        for i in range(len(word)):
-            if not itr_node.contains_char(word[i]):
+        node_iter = self.node
+        for ch in word:
+            if not node_iter.char_exist(ch):
                 return False
-            itr_node = itr_node.get(word[i])
-        return itr_node.is_end()
+            node_iter = node_iter.get_char_node(ch)
+        return node_iter.is_terminal_node()
 
     def startsWith(self, prefix: str) -> bool:
-        itr_node = self.root
-        for i in range(len(prefix)):
-            if not itr_node.contains_char(prefix[i]):
+        node_iter = self.node
+        for ch in prefix:
+            if not node_iter.char_exist(ch):
                 return False
-            itr_node = itr_node.get(prefix[i])
+            node_iter = node_iter.get_char_node(ch)
         return True
 
 
