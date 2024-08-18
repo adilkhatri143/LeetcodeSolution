@@ -10,7 +10,7 @@ class Trie:
     
     def insert(self, word):
         itr = self.node
-        words = word.split("/")[1:]
+        words = word.split("/")
         for ch in words:
             if ch not in itr.childs:
                 itr.childs[ch] = TreeNode()
@@ -19,28 +19,21 @@ class Trie:
     
     def search(self, word):
         itr = self.node
-        words = word.split("/")[1:]
-        temp_str = ""
-        for ch in words:
-            if ch in itr.childs and itr.childs[ch].is_terminal:
-                temp_str += ch
-                return temp_str
-            temp_str += ch
-            itr = itr.childs.get(ch)
-        return temp_str
+        words = word.split("/")
+        for i in range(len(words)):
+            if itr.childs[words[i]].is_terminal and i != len(words) - 1:
+                return False
+            itr = itr.childs.get(words[i])
+        return True
 
 class Solution:
     def removeSubfolders(self, folder: List[str]) -> List[str]:
-        exist = set()
         trie = Trie()
         result = list()
         for f in folder:
             trie.insert(f)
-        folder.sort(key=lambda x: len(x))
         for f in folder:
-            temp_str = trie.search(f)
-            if temp_str not in exist:
-                exist.add(temp_str)
+            if trie.search(f):
                 result.append(f)
         return result
 
