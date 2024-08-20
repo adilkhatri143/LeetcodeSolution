@@ -15,5 +15,4 @@ class Solution:
 
 
     def minSteps(self, n: int) -> int:
-        dp = dict()
-        return self.solve(1, 1, 0, n, dp)
+        return self.solve(1, 1, 0, n, dict())
