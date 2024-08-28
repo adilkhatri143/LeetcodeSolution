@@ -9,7 +9,7 @@ class Solution:
             new_row = row + x
             new_col = col + y
             if 0 <= new_row < len(grid1) and 0 <= new_col < len(grid1[0]) and grid2[new_row][new_col] == 1:
-                answer = answer & self.solve(new_row, new_col, grid1, grid2)
+                answer = self.solve(new_row, new_col, grid1, grid2) and answer 
         return answer
 
 
