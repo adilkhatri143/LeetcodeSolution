@@ -9,16 +9,16 @@ class Solution:
             new_row = row + x
             new_col = col + y
             if 0 <= new_row < len(grid1) and 0 <= new_col < len(grid1[0]) and grid2[new_row][new_col] == 1:
-                answer &= self.solve(new_row, new_col, grid1, grid2)
+                answer = answer & self.solve(new_row, new_col, grid1, grid2)
         return answer
 
 
     def countSubIslands(self, grid1: List[List[int]], grid2: List[List[int]]) -> int:
         m = len(grid1)
         n = len(grid1[0])
-        answer = 0
+        res = 0
         for row in range(m):
             for col in range(n):
                 if grid2[row][col] == 1 and self.solve(row, col, grid1, grid2):
-                    answer += 1
-        return answer
+                    res += 1
+        return res
