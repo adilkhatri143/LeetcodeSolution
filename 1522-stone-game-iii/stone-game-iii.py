@@ -1,27 +1,22 @@
 class Solution:
-    def solve(self, idx, turn, stoneValue, dp):
+    def solve(self, idx, stoneValue, dp):
         if idx >= len(stoneValue):
             return 0
-        if (idx, turn) in dp:
-            return dp[(idx, turn)]
-        score = 0
-        if turn:
-            answer = float("-inf")
-            for i in range(idx, min(idx + 3, len(stoneValue))):
-                score += stoneValue[i]
-                answer = max(answer, score + self.solve(i + 1, 0, stoneValue, dp))
-        else:
-            answer = float("inf")
-            for i in range(idx, min(idx + 3, len(stoneValue))):
-                answer = min(answer, self.solve(i + 1, 1, stoneValue, dp))
-        dp[(idx, turn)] = answer
-        return dp[(idx, turn)]
+        if idx in dp:
+            return dp[idx]
+        max_score = float("-inf")
+        cur_sum = 0
+        for i in range(idx, min(idx + 3, len(stoneValue))):
+            cur_sum += stoneValue[i]
+            max_score = max(max_score, cur_sum - self.solve(i + 1, stoneValue, dp))
+        dp[idx] = max_score
+        return dp[idx]
 
     def stoneGameIII(self, stoneValue: List[int]) -> str:
-        total_score = sum(stoneValue)
-        alice_score = self.solve(0, 1, stoneValue, dict())
-        if total_score - alice_score == alice_score:
-            return "Tie"
-        elif total_score - alice_score > alice_score:
+        score = self.solve(0, stoneValue, dict())
+        if score < 0:
             return "Bob"
-        return "Alice"
+        elif score > 0:
+            return "Alice"
+        else:
+            return "Tie"
