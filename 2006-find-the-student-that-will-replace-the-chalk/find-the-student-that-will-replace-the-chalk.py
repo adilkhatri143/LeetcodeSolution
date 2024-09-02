@@ -7,5 +7,4 @@ class Solution:
             if val > rem:
                 return idx
             rem -= val
-        return 0
 
