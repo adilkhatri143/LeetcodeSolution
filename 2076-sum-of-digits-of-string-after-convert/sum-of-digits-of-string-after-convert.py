@@ -4,7 +4,6 @@ class Solution:
         for ch in s:
             num += str(ord(ch) - 97 + 1)
         num = int(num)
-        print(num)
         while k and num:
             copy_num = num
             answer = 0
