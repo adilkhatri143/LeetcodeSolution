@@ -14,10 +14,7 @@ class Solution:
                     (self.solve(root1.left, root2.left) and self.solve(root1.right, root2.right)) or
                     (self.solve(root1.left, root2.right) and self.solve(root1.right, root2.left))
                 )
-            else:
-                return False
-        else:
-            return False
+        return False
 
     def flipEquiv(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
         return self.solve(root1, root2)
