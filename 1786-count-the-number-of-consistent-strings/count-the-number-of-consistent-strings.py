@@ -3,8 +3,9 @@ class Solution:
         allowed_char = set(allowed)
         res = 0
         for word in words:
-            contains_char = set(word)
-            diff = contains_char.difference(allowed_char)
-            if len(diff) == 0:
+            for ch in word:
+                if ch not in allowed_char:
+                    break
+            else:
                 res += 1
         return res
