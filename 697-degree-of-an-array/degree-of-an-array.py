@@ -2,8 +2,7 @@ class Solution:
     def findShortestSubArray(self, nums: List[int]) -> int:
         max_freq = float("-inf")
         num_to_freq = Counter(nums)
-        for k, v in num_to_freq.items():
-            max_freq = max(max_freq, v)
+        max_freq = max(num_to_freq.values())
         num_to_freq.clear()
         window_end = 0
         res = float("inf")
