@@ -1,13 +1,13 @@
 class Solution:
     def makeFancyString(self, s: str) -> str:
-        first, second, third = 0, 1, 2
         if len(s) < 3:
             return s
-        new_s = ""
+        new_s = list()
+        first, second, third = 0, 1, 2
         while first < len(s):
             if not (third < len(s) and s[first] == s[second] == s[third]):
-                new_s += s[first]
+                new_s.append(s[first])
             first += 1
             second += 1
             third += 1
-        return new_s
+        return "".join(new_s)
