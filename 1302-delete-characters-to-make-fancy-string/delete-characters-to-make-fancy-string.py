@@ -5,13 +5,9 @@ class Solution:
             return s
         new_s = ""
         while first < len(s):
-            if third < len(s) and s[first] == s[second] == s[third]:
-                first += 1
-                second += 1
-                third += 1
-            else:
+            if not (third < len(s) and s[first] == s[second] == s[third]):
                 new_s += s[first]
-                first += 1
-                second += 1
-                third += 1
+            first += 1
+            second += 1
+            third += 1
         return new_s
