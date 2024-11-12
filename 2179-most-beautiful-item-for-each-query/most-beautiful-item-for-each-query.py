@@ -15,8 +15,8 @@ class Solution:
         items.sort()
         maximum = float("-inf")
         for idx, item in enumerate(items):
-            items[idx][1] = max(maximum, items[idx][1])
-            maximum = items[idx][1]
+            maximum = max(maximum, items[idx][1])
+            items[idx][1] = maximum
         ans = list()
         for query in queries:
             ans.append(self.binary_search(query, items))
